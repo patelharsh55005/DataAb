@@ -1,0 +1,45 @@
+CREATE OR REPLACE TYPE num_nested IS TABLE OF NUMBER;
+/
+
+
+CREATE OR REPLACE PROCEDURE manage_nested_table IS
+    -- Initialize nested table with values directly 
+    v_tab num_nested := num_nested(10, 20, 30);
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Initial Elements:');
+    FOR i IN 1..v_tab.COUNT LOOP
+        DBMS_OUTPUT.PUT_LINE('Element '||i||' = '||v_tab(i));
+    END LOOP;
+
+    -- Insert new element (concatenate using MULTISET UNION)
+    v_tab := v_tab MULTISET UNION num_nested(40);
+
+    DBMS_OUTPUT.PUT_LINE('After Insert (added 40):');
+    FOR i IN 1..v_tab.COUNT LOOP
+        DBMS_OUTPUT.PUT_LINE('Element '||i||' = '||v_tab(i));
+    END LOOP;
+
+    -- Update element at index 2
+    v_tab(2) := 200;
+
+    DBMS_OUTPUT.PUT_LINE('After Update (2nd element changed):');
+    FOR i IN 1..v_tab.COUNT LOOP
+        DBMS_OUTPUT.PUT_LINE('Element '||i||' = '||v_tab(i));
+    END LOOP;
+
+    -- Delete element at index 1
+    v_tab.DELETE(1);
+
+    DBMS_OUTPUT.PUT_LINE('After Delete (1st element removed):');
+    FOR i IN v_tab.FIRST..v_tab.LAST LOOP
+        IF v_tab.EXISTS(i) THEN
+            DBMS_OUTPUT.PUT_LINE('Element '||i||' = '||v_tab(i));
+        END IF;
+    END LOOP;
+
+END;
+/
+
+
+SET SERVEROUTPUT ON;
+EXEC manage_nested_table;

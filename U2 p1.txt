@@ -6,41 +6,45 @@ Practical-10
 
 
 Export entire :
-exp mca26@orcl19 file=mca26_schema.dmp log=mca26_export.log owner=mca26 rows=y indexes=y grants=y triggers=y constraints=y
+exp mca3@orcl19 file=mca3_schema.dmp log=mca3_export.log owner=mca3 rows=y indexes=y grants=y triggers=y constraints=y
 
 
 Export specific tables :
-exp mca26@orcl19 file=mca26_dept_emp.dmp log=mca26_dept_emp.log tables=(DEPARTMENT,EMPLOYEE) rows=y indexes=y grants=y triggers=y constraints=y
+exp mca3@orcl19 file=mca3_dept_emp.dmp log=mca3_dept_emp.log tables=(DEPARTMENT,EMPLOYEE) rows=y indexes=y grants=y triggers=y constraints=y
 
 
 
 Export schema excluding a specific object type :
-exp mca26@orcl19 file=mca26_only_tables.dmp log=mca26_only_tables.log owner=mca26 rows=Y indexes=N grants=N triggers=N constraints=N
+exp mca3@orcl19 file=mca3_only_tables.dmp log=mca3_only_tables.log owner=mca3 rows=Y indexes=N grants=N triggers=N constraints=N
 
 
 Export only the data :
-exp mca26@orcl19 file=mca26_data_only.dmp log=mca26_data_only_export.log owner=mca26 rows=y indexes=n grants=n triggers=n constraints=n
+exp mca3@orcl19 file=mca3_data_only.dmp log=mca3_data_only_export.log owner=mca3 rows=y indexes=n grants=n triggers=n constraints=n
 
 
 Export schema including specific tables but without indexes:
-exp mca26@orcl19 file=mca26_no_indexes.dmp log=mca26_no_indexes_export.log tables=(DEPARTMENT,EMPLOYEE) rows=y indexes=n grants=y triggers=y constraints=y
+exp mca3@orcl19 file=mca3_no_indexes.dmp log=mca3_no_indexes_export.log tables=(DEPARTMENT,EMPLOYEE) rows=y indexes=n grants=y triggers=y constraints=y
+
+
+
+
 
 
 
 Import the schema :
-imp mca26@orcl19 file=mca26_schema.dmp log=mca26_import.log fromuser=mca26 touser=mca26
+imp mca3@orcl19 file=mca3_schema.dmp log=mca3_import.log fromuser=mca3 touser=mca3
 
 
 Import schema excluding a specific table :
-imp mca26@orcl19 file=mca26_schema.dmp log=mca26_import_exclude_table.log fromuser=mca26 touser=mca26 tables=(DEPARTMENT,EMPLOYEE) ignore=y
+imp mca3@orcl19 file=mca3_schema.dmp log=mca3_import_exclude_table.log fromuser=mca3 touser=mca3 tables=(DEPARTMENT,EMPLOYEE) ignore=y
 
 
 Import specific tables :
-imp mca26@orcl19 file=mca26_schema.dmp log=mca26_import_tables.log fromuser=mca26 touser=mca26 tables=(DEPARTMENT,EMPLOYEE)
+imp mca3@orcl19 file=mca3_schema.dmp log=mca3_import_tables.log fromuser=mca3 touser=mca3 tables=(DEPARTMENT,EMPLOYEE)
 
 Import data excluding constraints :
-imp mca26@orcl19 file=mca26_schema.dmp log=mca26_import_no_constraints.log fromuser=mca26 touser=mca26 constraints=n
+imp mca3@orcl19 file=mca3_schema.dmp log=mca3_import_no_constraints.log fromuser=mca3 touser=mca3 constraints=n
 
 
 Import data overriding existing data:
-imp mca26@orcl19 file=mca26_schema.dmp log=mca26_import_full.log full=y
+imp mca3@orcl19 file=mca3_schema.dmp log=mca3_import_full.log full=y
